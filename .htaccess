@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteRule ^(api/.*)$ server/api/index.php?$1
+
+RewriteRule ^$ server/index.php
+RewriteRule ^p/.*$ server/index.php

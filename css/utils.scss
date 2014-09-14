@@ -1,0 +1,19 @@
+@mixin vendor-prefixes($property, $value) {
+  @each $prefix in '', -webkit-, -moz-, -o-, -ms- {
+    #{$prefix}#{$property} : $value;
+  }
+}
+
+.self-clear {
+    &:after {
+        display: block;
+        content: "";
+        clear: both;
+    }
+}
+
+.hide-text {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}

@@ -1,0 +1,79 @@
+.CodeMirror {
+    .cm-keyword {
+        font-weight: bold;
+    }
+
+    pre, .line-error {
+        padding-left: 10px;
+    }
+
+    .line-error {
+        font-weight: bold;
+        background-color: #E8CCCB;
+        color: #333;
+    }
+    .inline-error {
+        border-bottom: 1px dashed #E85752;
+    }
+    .gutter-error {
+        background-image: url("data:image/gif;base64,R0lGODlhEAAQANUAAPVvcvWHiPVucvRuc+ttcfV6f91KVN5LU99PV/FZY/JhaM4oN84pONE4Rd1ATfJLWutVYPRgbdxpcsgWKMgZKs4lNfE/UvE/U+artcpdSc5uXveimslHPuBhW/eJhfV5efaCgO2CgP+/v+PExP///////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAACUALAAAAAAQABAAAAZ+wJJwSCwaScgkySgkjTQZTkYzWhadnE5oE+pwqkSshwQqkzxfa4kkQXxEpA9J9EFI1KQGQQBAigYCBA14ExEWF0gXihETeA0QD3AkD5QQg0NsDnAJmwkOd5gYFSQKpXAFDBhqaxgLBwQBBAapq00YEg0UDRKqTGtKSL7Cw8JBADs=");
+        background-repeat: no-repeat;
+        min-height: 16px;
+        min-width: 16px;
+    }
+}
+
+.running {
+    .CodeMirror {
+        opacity: 0.75;
+    }
+    .CodeMirror-code {
+        cursor: default;
+    }
+    .cm-identifier {
+        cursor: help;
+    }
+    .CodeMirror-cursor {
+        display: none;
+    }
+}
+
+
+/**
+ * Theme
+ */
+.CodeMirror {
+    color: #000;
+    background: #fff;
+    font-family: "Consolas", Monaco, Menlo, "Andale Mono", "lucida console",
+        "Courier New", monospace;
+    line-height: 1.40em;
+
+    // Tokens
+    .cm-keyword { font-weight: bold; }
+    .cm-atom { color: #009999; }
+    .cm-number { color: #009999; }
+    .cm-comment{ color:#999988; font-style: italic; }
+    .cm-operator { color: #445588; font-weight: bold; }
+    .cm-string { color: #DD1144; }
+/*     .cm-identifier { color: #008080; } */
+    .cm-builtin { color: #445588; }
+
+    .CodeMirror-gutters {
+        background: #ECECEC;
+        padding: 0 0.25em;
+        text-align: center;
+    }
+
+
+    .CodeMirror-code {
+        & > div:nth-child(5n) {
+            .CodeMirror-linenumber {
+                font-weight: bold;
+            }
+        }
+        .CodeMirror-linenumber {
+            text-align: center;
+        }
+    }
+}

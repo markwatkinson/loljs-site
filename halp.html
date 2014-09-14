@@ -1,0 +1,230 @@
+HTML Dump from the old version. This will need checking and adapting.
+
+
+<div id='cheatsheet'>
+
+    <div id='cheat_contents' >
+
+    <div>
+      <h3> Comments and Whitespace </h3>
+      Whitespace is largely ignored, but commands should generally be placed one per line. To put multiple commands
+      on one line, separate them with a comma.
+      <p>
+      Comments can extend until the end of the line if they are opened with BTW: <pre class='eg'>HAI BTW this is a comment</pre>
+      <p>Or they can be arbitrary length if opened with OBTW:
+      <pre class='eg'>OBTW
+  this
+  is
+  a
+  multi-line
+  comment
+TLDR</pre>
+
+    </div>
+    <div> <h3> IO </h3>
+      Output can be printed to the screen by using <pre class='eg'>VISIBLE</pre>. If the final
+      argument of <pre class='eg'>VISIBLE</pre> is an exclamation point (!) then a newline is
+      not printed afterwards.
+      <br><br>Input can be requested by using <pre class='eg'>GIMMEH VARNAME</pre> which inserts
+      the value (as string) the user provides into the variable called VARNAME
+      <p>Obviously, being JavaScript, no file IO is available.
+    </div>
+    <div>
+      <h3> Variables and Types </h3>
+      Variables are declared as follows: <pre class='eg'>I HAS A NUMBER</pre>  and they are assigned by:
+      <pre class='eg'>NUMBER R 12</pre>
+      <br> They may also be assigned at declaration:  <pre class='eg'>I HAS A NUMBER ITZ 12</pre>
+
+      <br><br> LOLCODE recognises the types:<pre class='eg'>NUMBR</pre>, <pre class='eg'>NUMBAR</pre>,
+        <pre class='eg'>TROOF</pre>, <pre class='eg'>YARN</pre>,
+        <pre class='eg'>NOOB</pre>  and <pre class='eg'>BUKKIT</pre> as float, int, bool, string, and null, and array respectively.
+
+      <br><br>YARN literals are defined between " and ", but :" is an escape sequence. TROOF literals are <pre class='eg'>WIN</pre>
+      and <pre class='eg'>FAIL</pre> (true and false).
+      <p>Type casting works as follows:
+      <br>
+      <pre class='eg'>I HAS A NUMBER ITZ 12
+BTW x_ R MAEK y_ A TYPE is equivalent to x_ = (TYPE)y_
+NUMBER R MAEK NUMBER A YARN   BTW number == "12"
+BTW you can also use 'IS NOW A'
+NUMBER IS NOW A TROOF BTW number == true
+NUMBER IS NOW A NOOB  BTW number == null
+NUMBER IS NOW A NUMBAR  BTW number == 0</pre>
+    <h3> Arrays </h3>
+    <p> Array support is not defined in the LOLCODE 1.2 spec so I have taken a
+        few liberties. An array is declared with:
+     <pre class='eg'>I HAS A ARRAY ITZ GOT 1 AN 2 AN 3
+BTW ARRAY = [1, 2, 3]
+I HAS A NOTHERARRAY ITZ GOT NOTHING
+BTW ARRAY = []
+I HAS YETANOTHERARRAY ITZ GOT 1 AN NOTHING ELSE
+BTW ARRAY = [1]</pre>
+    <p> The last construct is redundant, NOTHING ELSE is not required.
+        Assignment after declaration works almost as usual:
+<pre class='eg'>ARRAY R GOT 1 AN 2 AN 3
+BTW ARRAY = [1, 2, 3]</pre>
+  <p> Array access works with a single '!':
+  <pre class='eg'>ARRAY R GOT 1 AN 2 AN 3
+VISIBLE ARRAY!0
+VISIBLE ARRAY!1</pre><p> these can also be used for assignment directly
+  into the given indices. This also allows for multi-dimensional arrays
+
+  <pre class='eg'>I HAS A ARRAY ITZ GOT NOTHING
+ARRAY!0 R GOT FAIL AN WIN
+ARRAY!1 R GOT 0 AN 1
+BTW ARRAY = [[false, true], [0, 1]]</pre>
+<p> Arrays and strings have the special 'LEN OF' operator available which
+  returns the number of items they hold (at their first level)
+
+
+
+
+    </div>
+
+    <div>
+      <h3> Control </h3>
+      Conditional statements can be created with either
+      <pre class='eg'>IZ VAR1 [BIGGR|SMALLR] THAN VAR2?  .... KTHX</pre>
+      <br>
+      or <pre class='eg'>VAR1, O RLY?, YA RLY ... OIC</pre>
+
+      <p>An example follows:
+      <pre class='eg'>I HAS A FOOD ITZ "CHEEZBURGER"
+BOTH SAEM FOOD AN "CHEEZBURGER", O RLY?
+  YA RLY
+    VISIBLE "I LIKE CHEEZBURGER :D"
+  MEBBE BOTH SAEM FOOD AN "COOKIE"
+    VISIBLE "I LIKE COOKIE ::)"
+  NO WAI
+    VISIBLE "I WANT CHEEZBURGER :("
+OIC</pre>
+
+      <p> This could be re-written as a WTF? (switch) expression: <pre class='eg'>I HAS A FOOD ITZ "CHEEZBURGER"
+FOOD, WTF?
+  OMG "CHEEZBURGER"
+    VISIBLE "I LIKE CHEEZBURGER :D"
+    GTFO       BTW break
+  OMG "COOKIE"
+    VISIBLE "I LIKE COOKIE ::)"
+    GTFO
+  OMGWTF    BTW default
+    VISIBLE "I WANT CHEEZBURGER :("
+OIC</pre>
+
+      <h3> Looping </h3>
+      Loops are simply defined as: <pre class='eg'>IM IN YR LOOP ... KTHX</pre> where 'loop' may be any arbitrary
+      sequence of letters. This creates an infinite loop which must be exited explicitly with
+      <pre class='eg'>GTFO</pre>. More complex loops can be created as follows:
+
+<pre class='eg'>IM IN YR LOOP UPPIN YR COUNTER WILE COUNTER SMALLR THAN 10
+  VISIBLE COUNTER
+IM OUTTA YR LOOP</pre>
+
+<p>or:
+<pre class='eg'>IM IN YR LOOP UPPIN YR COUNTER TIL BOTH SAEM COUNTER AN 10
+  VISIBLE COUNTER
+IM OUTTA YR LOOP</pre>, where 'COUNTER' is just a variable identifier and anything after
+'til' or 'wile' is an expression. If counter was not previously declared, it's set to integer 0.
+<br> If 'COUNTER' (or whatever) already exists and is set, you can set the loop action to decrement with <pre class='eg'>NERFIN</pre> instead of <pre class='eg'>UPPIN</pre>
+
+    </div>
+
+    <div>
+      <h3> Operators </h3>
+
+      The language defined arithmetic operators are:
+      <pre class='eg'>SUM OF</pre>,<pre class='eg'>DIFF OF</pre>,<pre class='eg'>PRODUKT OF</pre>,
+      <pre class='eg'>QUOSHUNT OF</pre>,<pre class='eg'>MOD OF</pre>,<pre class='eg'>BIGGR OF</pre>,
+      <pre class='eg'>SMALLR OF</pre> which correspond to
+      +, -, *, /, % (modulus), max and min.
+      <br><br>Boolean (logic operators are): <pre class='eg'>BOTH SAEM</pre>,<pre class='eg'>DIFFRINT</pre>,
+      <pre class='eg'>BOTH OF</pre>,<pre class='eg'>EITHER OF</pre>,<pre class='eg'>WON OF</pre>,
+      <pre class='eg'>NOT</pre>,
+      <pre class='eg'>ALL OF</pre>,<pre class='eg'>ANY OF</pre>,
+      which correspond to ==, !=, &amp;&amp;, ||, exclusive or, not, nary &amp;&amp; and nary ||.
+      <p>
+      Generally operators use prefix notation and are assembled as follows:
+      <pre class='eg'>SUM OF 1 AN 2</pre>, or more complex:<br>
+      <pre class=eg>BOTH SAEM SUM OF 1 AN 2 AN 3 BTW this evaluates to WIN</pre>
+
+      <p>The expressions' precedence is such that the expressions are evaluate left to right
+      and may nest
+      <pre class='eg'>SUM OF QUOSHUNT OF 1 AN 2 AN DIFF OF 3 AN 4</pre> is equivalent to (1/2) + (3-4),
+      i.e. <pre class='eg'>(SUM OF (QUOSHUNT OF 1 AN 2) AN (DIFF OF 3 AN 4))</pre>
+      <br><br> These are all binary operators (i.e. they take two operands) except for
+      <pre class='eg'>NOT</pre>,
+      which is unary (i.e. it takes only one operand), and <pre class='eg'>ALL OF</pre> and
+      <pre class='eg'>ANY OF</pre> which are both nary (i.e. they take an arbitrary number of operands).
+      Their list of operands is terminated by  <pre class='eg'>MKAY</pre> or the end of the line.
+
+      <br><br>
+      Greater than and less than can be achieved by combining the above operators:
+      <pre class='eg'>BOTH SAEM X AN [BIGGR|SMALLR] OF X AN Y</pre>, but there also
+      exist <pre class='eg'>IZ X BIGGR THAN Y?</pre> and <pre class='eg'>IZ X SMALLR THAN Y?</pre>.
+      These both create if statements with their condition and must be terminated with <pre class='eg'>KTHX</pre>
+      <br><br>Finally, the concatenation operator is the nary <pre class='eg'>SMOOSH</pre> and used as follows:
+      <pre class='eg'>I HAS A VAR ITZ SMOOSH "STR1" AN "STR2" AN "STR" AN 3 MKAY
+VISIBLE VAR BTW prints "str1str2str3"</pre>
+    </div>
+    <div>
+      <h3> Functions </h3>
+
+      <p>Functions can be defined like this:
+      <pre class='eg'>HOW DUZ I ADD YR NUM1 AN YR NUM2
+  I HAS A SUM ITZ SUM OF NUM1 AN NUM2
+  FOUND YR SUM  BTW returns sum
+IF U SAY SO</pre>
+    <p>This has defined a function 'add' with two arguments. It can be called like so:
+
+    <pre class='eg'>I HAS A SUM ITZ ADD 1 2
+VISIBLE SUM BTW prints 3</pre>
+    <p>Functions are evaluated in the same way as operators, so the return value of a
+    function may be nested inside an operator and vice versa, e.g.:
+<pre class='eg'>I HAS A NUM ITZ ADD 1 AN DIFF OF 1 AN 2
+VISIBLE NUM  BTW prints NUM = 1 + (1-2) = 0</pre>
+
+  <p> Further, if one defines a function which takes zero arguments it looks like a
+      constant:
+      <pre class='eg'>HOW DUZ I PI
+  FOUND YR 3.14159
+IF U SAY SO
+
+VISIBLE QUOSHUNT OF PI AN 2 BTW prints 1.570795</pre>
+
+    </div>
+
+
+
+    <div>
+      <h3> Escape sequences</h3>
+      <p>
+      In LOLCODE escape sequences inside strings begin with a colon ':'.
+      LOLCODE defines the following escape sequences for use inside strings:
+      <pre class='eg'>":""    BTW An escaped quote
+":)"    BTW newline
+":&gt;"    BTW tab
+":o"    BTW bell (not implemented here)
+"::"    BTW colon character.
+":{VAR}"  BTW variable interpolation (inserts the string value of VAR)
+":(HEX)"  BTW inserts a unicode character with the given hex code</pre>
+  <p> Named unicode sequences are not yet supported.
+
+
+    </div>
+
+  </div>
+
+  <div id='cheat_menu' style='border-top:1px solid;line-height:15px;' >
+    <h3>Topics</h3>
+    <a> Comments and Whitespace </a> |
+    <a> IO </a> |
+
+    <a> Variables and Types </a> |
+
+    <a> Control and Loops </a> |
+    <a> Operators </a> |
+    <a> Functions </a> |
+    <a> Escape Sequences</a>
+
+  </div>
+</div>

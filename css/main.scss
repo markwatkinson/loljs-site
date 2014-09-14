@@ -1,0 +1,78 @@
+.ide {
+    overflow: hidden;
+}
+
+.code-debug-wrapper {
+    @extend .self-clear;
+    width: 100%;
+    overflow: hidden;
+}
+
+.code-wrapper, .debugger-panel {
+    @include vendor-prefixes(transition, all 0.25s ease-in-out);
+    float: left;
+    height: 100%;
+}
+.code-wrapper {
+    width: 100%;
+}
+.debugger-panel {
+    width: 0%;
+}
+.running .code-wrapper {
+    width: 75%;
+}
+.running .debugger-panel {
+    width: 25%;
+}
+
+
+.overlay {
+    display: none;
+    position: fixed;
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left: 10%;
+    background-color: #fff;
+    z-index: 10;
+    box-shadow: 0 0 5px #555;
+    border-radius: 1em 1em 0 1em;
+    overflow: hidden;
+    padding-bottom: 20px;
+    .header {
+        height: 32px;
+        background: transparent;
+        position: relative;
+        cursor: move;
+        .button.close {
+            right: 0;
+            top: 0;
+            @extend .hide-text;
+            background: transparent url(img/close-32.png);
+            width: 32px;
+            height: 32px;
+            position: absolute;
+            opacity: 1.0;
+        }
+    }
+
+    h2 {
+        border-top-left-radius: inherit;
+        border-top-right-radius: inherit;
+        text-align: center;
+        background: #A05ABE;
+        margin: 0;
+        color: #fff;
+        height: 100%;
+    }
+    .content {
+        padding: 1em;
+        overflow: auto;
+    }
+}
+
+
+.main-error {
+    text-align: center;
+}

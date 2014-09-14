@@ -1,0 +1,6 @@
+[submodule "lib/lol-cm"]
+	path = lib/lol-cm
+	url = git@github.com:markwatkinson/lol-cm.git
+[submodule "lib/loljs"]
+	path = lib/loljs
+	url = git@github.com:markwatkinson/loljs.git

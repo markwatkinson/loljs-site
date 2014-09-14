@@ -1,0 +1,130 @@
+$blue-1: #4473CA;
+$blue-2: #6387CA;
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 12pt;
+}
+
+.header {
+    @extend .self-clear;
+    text-align: center;
+    position: relative;
+
+    height: 48px;
+
+    color: #fff;
+    background: #1C59CA;
+    background-image: -webkit-linear-gradient(270deg, $blue-1, $blue-2);
+    border-bottom: 2px solid #0047CA;
+
+    .left, .right {
+        position: absolute;
+        top: 0;
+    }
+    .left {
+        left: 0;
+    }
+    .right {
+        right: 0;
+    }
+    .center {
+        font-size: 17pt;
+        font-weight: bold;
+        text-shadow: #fff 0 1px ;
+        padding-top: 8px;
+    }
+
+    .button {
+        @extend .hide-text;
+        display: block;
+        width: 48px;
+        height: 48px;
+        opacity: 0.9;
+        @include vendor-prefixes(transition, opacity 0.2s ease-in-out);
+        &:hover {
+            opacity: 1.0;
+        }
+    }
+
+    .help {
+        background-image: url('img/help.png');
+    }
+    .save {
+        background-image: url('img/save.png');
+    }
+
+
+    .help-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        // This has to be higher than whatever CodeMirror's highest z-index is.
+        z-index: 50;
+        ul, li {
+            padding: 0;
+            margin: 0;
+        }
+        ul {
+            background: #fff;
+            border: 5px solid #6387CA;
+            border-radius:  0 0 0 1em;
+            border-top: none;
+            list-style: none;
+        }
+        li {
+            padding: 0.25em 1em;
+            &:not(:last-child) {
+                border-bottom: 1px solid #888;
+            }
+        }
+        a {
+            display: block;
+            text-decoration: none;
+            color: #666;
+            font-weight: bold;
+            @include vendor-prefixes(transition, color 0.2s ease-in-out);
+            &:hover {
+                color: #333;
+            }
+        }
+    }
+}
+
+
+$bottom-height: 40px;
+.output-container {
+    margin-bottom: $bottom-height;
+    border-top: 2px solid #ddd;
+
+    button {
+        font-size: larger;
+        color: #333;
+    }
+    #output {
+        font-family: "Consolas", monospace;
+        white-space: pre;
+        overflow: auto;
+        height: 100%;
+    }
+    #examples {
+        float: right;
+    }
+}
+.bottom {
+    // This panel is disabled for now.
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: $bottom-height;
+    > div {
+        padding: 0.5em 1em;
+    }
+    border-top: 2px solid darken($blue-1, 20%);
+    background-image: -webkit-linear-gradient(270deg, $blue-1, $blue-2);
+    color: #fff;
+}
